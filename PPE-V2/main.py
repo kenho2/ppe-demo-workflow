@@ -25,6 +25,8 @@ def main() -> int:
         cv2=cv2,
         window_width=config.window_width,
         window_height=config.window_height,
+        compliance_debug=config.compliance_debug,
+        compliance_debug_interval_seconds=config.compliance_debug_interval_seconds,
     )
 
     if not probe_rtsp_source(cv2, config.video_reference):
@@ -36,7 +38,7 @@ def main() -> int:
     try:
         while True:
             print(
-                f"Starting workflow pipeline: workspace={config.workspace_name}, workflow={config.workflow_id}, input={current_image_input_name}"
+                f"Starting workflow pipeline. workspace={config.workspace_name}, workflow={config.workflow_id}, input={current_image_input_name}."
             )
 
             try:

@@ -15,6 +15,12 @@ class RuntimeConfig:
     image_input_name: str
     window_width: int
     window_height: int
+    compliance_debug: bool
+    compliance_debug_interval_seconds: float
+
+
+def _env_flag(name: str, default: str = "0") -> bool:
+    return os.getenv(name, default).strip().lower() in {"1", "true", "yes"}
 
 
 def load_runtime_config() -> RuntimeConfig:
@@ -50,4 +56,6 @@ def load_runtime_config() -> RuntimeConfig:
         image_input_name=os.getenv("MAIN_IMAGE_INPUT_NAME") or os.getenv("IMAGE_INPUT_NAME", "input"),
         window_width=int(os.getenv("MAIN_WINDOW_WIDTH", "960")),
         window_height=int(os.getenv("MAIN_WINDOW_HEIGHT", "540")),
+        compliance_debug=_env_flag("MAIN_DEBUG_COMPLIANCE", "1"),
+        compliance_debug_interval_seconds=float(os.getenv("MAIN_DEBUG_COMPLIANCE_INTERVAL_SECONDS", "5")),
     )

@@ -63,6 +63,8 @@ Common variables:
 - `MAIN_IMAGE_INPUT_NAME`: optional override for `IMAGE_INPUT_NAME`
 - `MAIN_WINDOW_WIDTH`: preview width (default `960`)
 - `MAIN_WINDOW_HEIGHT`: preview height (default `540`)
+- `MAIN_DEBUG_COMPLIANCE`: `1` to print compliance status to console, `0` to disable (default `1`)
+- `MAIN_DEBUG_COMPLIANCE_INTERVAL_SECONDS`: minimum seconds between compliance status logs (default `5`)
 - `MAIN_QUIET_WARNINGS`: `1` to suppress known SDK warning noise (default `1`)
 
 ## Run
@@ -82,6 +84,14 @@ python main.py
 ## Controls
 
 - Press `Q` or `Esc` in the preview window to stop the pipeline.
+
+## Console Logging
+
+- When `MAIN_DEBUG_COMPLIANCE=1`, the app prints one periodic status line:
+  - `Compliance status: compliant`
+  - `Compliance status: partial-compliance`
+  - `Compliance status: non-compliant`
+- Log cadence is controlled by `MAIN_DEBUG_COMPLIANCE_INTERVAL_SECONDS`.
 
 ## Project Structure
 

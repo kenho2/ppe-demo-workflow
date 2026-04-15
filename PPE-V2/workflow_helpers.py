@@ -36,7 +36,7 @@ def handle_pipeline_exception(
     ):
         print(
             "Workflow input name mismatch detected. "
-            f"Retrying with input={expected_input_name}."
+            f"Retrying with input name: {expected_input_name}."
         )
         return expected_input_name, True, True
 
@@ -47,6 +47,29 @@ def handle_pipeline_exception(
             f"{expected_input_name}"
         )
     else:
+        # Common workflow dynamic-block integration failures and targeted fixes.
+        if "Detections" in message and "class_name" in message and "no attribute" in message:
+            print(
+                "Pipeline failed in workflow dynamic block: Detections has no class_name attribute. "
+                "Update workflow block code to use predictions.data.get('class_name') or class_id mapping."
+            )
+        if "unexpected keyword argument 'predictions'" in message:
+            print(
+                "Pipeline failed in workflow dynamic block: run() does not accept keyword input 'predictions'. "
+                "Update block signature to accept incoming workflow inputs, e.g. "
+                "run(predictions=None, raw_detections=None, **kwargs)."
+            )
+        if "multiple values for argument 'predictions'" in message:
+            print(
+                "Pipeline failed in workflow dynamic block: predictions was passed both positionally and by keyword. "
+                "Use a defensive signature like run(*args, **kwargs) and extract predictions from kwargs/args."
+            )
+        if "did not produce required outputs" in message and "Expected:" in message:
+            print(
+                "Pipeline failed in workflow dynamic block: returned output keys do not match step contract. "
+                "Return all required outputs declared by the step (for this workflow: "
+                "compliance_state, reason, diagnostic_info, confidence)."
+            )
         print(f"Pipeline failed: {exc}")
 
     return current_image_input_name, retry_attempted, False
