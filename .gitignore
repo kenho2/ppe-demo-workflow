@@ -1,0 +1,22 @@
+# Python cache/artifacts
+__pycache__/
+*.py[cod]
+
+# Virtual environments
+.venv/
+venv/
+
+# VS Code and local settings
+.vscode/
+
+# Local environment files
+.env
+.env.*
+!.env.example
+
+# Runtime output
+logs/
+
+# OS/editor noise
+.DS_Store
+Thumbs.db
