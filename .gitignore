@@ -1,3 +1,8 @@
+# Keep this repository scoped to the PPE-V2 project only.
+/*
+!/.gitignore
+!/PPE-V2/
+
 # Python cache/artifacts
 __pycache__/
 *.py[cod]
