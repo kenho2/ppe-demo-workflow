@@ -38,3 +38,4 @@ flowchart LR
     C --> D[Analysis & Reasoning]
     D --> E[Visualization & Reporting]
     E --> F[Outputs (plots, JSON, summaries)]
+```
