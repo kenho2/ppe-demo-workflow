@@ -37,5 +37,6 @@ flowchart LR
     B --> C[Bedrock Inference Agent]
     C --> D[Analysis & Reasoning]
     D --> E[Visualization & Reporting]
-    E --> F[Outputs (plots, JSON, summaries)]
+    E --> F["Outputs (plots, JSON, summaries)"]
 ```
+
