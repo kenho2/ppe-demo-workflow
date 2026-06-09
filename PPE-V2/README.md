@@ -58,6 +58,7 @@ Required variables:
 
 Common variables:
 
+- `LOCAL_INFERENCE_API_URL`: local inference endpoint used by the SDK for local model/workflow steps (default `http://127.0.0.1:9001`)
 - `VIDEO_REFERENCE`: `0` for default webcam, or full `rtsp://...` URL
 - `IMAGE_INPUT_NAME`: workflow image input name (default `image`)
 - `MAIN_IMAGE_INPUT_NAME`: optional override for `IMAGE_INPUT_NAME`
@@ -104,6 +105,8 @@ python main.py
 
 ## Troubleshooting
 
+- Local inference endpoint issues:
+  - Set `LOCAL_INFERENCE_API_URL` in `.env` to the reachable inference server URL (for example `http://192.168.1.181:9001`).
 - RTSP probe fails:
   - Verify camera credentials, URL path, and stream availability.
 - Workflow input mismatch error:
