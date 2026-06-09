@@ -1,42 +1,27 @@
-# PPE Compliance Detection – Workflow Demo
+# Automated PPE Compliance Workflow
 
 [![Python Version](https://img.shields.io/badge/python-3.10%2B-blue.svg)]()
 [![License](https://img.shields.io/badge/license-MIT-green.svg)]()
-[![Build](https://img.shields.io/github/actions/workflow/status/kenho2/ppe-demo-workflow/ci.yml?label=build)]()
-[![Security Scan](https://img.shields.io/github/actions/workflow/status/kenho2/ppe-demo-workflow/security.yml?label=security)]()
 
-This repository contains a complete workflow demonstrating automated **PPE (Personal Protective Equipment) compliance detection** using a modular, multi‑agent architecture and AWS Bedrock–powered inference.
+This repository contains a fully automated workflow for detecting Personal Protective Equipment (PPE) compliance using a live video source (RTSP streams or webcams). 
 
-The project is designed as an **extensible demo** that can be adapted into production‑grade safety and compliance solutions.
+Designed as a production-ready proof of concept, this pipeline demonstrates how to deploy computer vision models into local environments while maintaining robust error handling, dynamic configuration, and self-healing execution.
 
----
+## 🚀 Business Value
+Manual safety compliance checks are time-consuming and prone to human error. This workflow automates the ingestion of live video feeds, tracks hardhat and safety vest compliance, and outputs structured compliance states in real time. 
 
-## ✨ Key capabilities
+## ✨ Key Integration Features
+- **Dynamic Stream Probing:** Automatically tests RTSP stream health and credentials before initializing the heavy inference pipeline.
+- **Self-Healing Execution:** If the upstream workflow definition changes (e.g., an image input name mismatch), the pipeline catches the exception, extracts the correct parameter, and automatically restarts.
+- **Environment Driven:** Fully configurable via `.env` files, making it simple for implementation teams to deploy across different client servers without altering code.
 
-- **PPE detection workflow** from image ingestion to structured results  
-- **Multi‑agent orchestration** for analysis, reasoning, and visualization  
-- **Bedrock‑backed inference** using Claude models for multimodal understanding  
-- **Plotting and reporting** for visual inspection of results  
-- **Clean, modular Python design** suitable for extension and integration
+## 🏗️ Quick Start
 
----
-
-## 🏗️ Architecture overview
-
-At a high level, the workflow:
-
-1. **Ingests images** (e.g., workers in industrial environments)
-2. **Preprocesses and encodes** them for model consumption
-3. **Invokes Bedrock models** for PPE detection and reasoning
-4. **Aggregates and structures** the results
-5. **Generates plots/reports** for human review or downstream systems
-
-```mermaid
-flowchart LR
-    A[Image Input] --> B[Preprocessing]
-    B --> C[Bedrock Inference Agent]
-    C --> D[Analysis & Reasoning]
-    D --> E[Visualization & Reporting]
-    E --> F["Outputs (plots, JSON, summaries)"]
-```
-
+**1. Clone and Prepare the Environment**
+```powershell
+git clone [https://github.com/kenho2/ppe-demo-workflow.git](https://github.com/kenho2/ppe-demo-workflow.git)
+cd ppe-demo-workflow/PPE-V2
+python -m venv .venv
+.\.venv\Scripts\Activate.ps1
+python -m pip install -r requirements.txt
+Copy-Item .env.example .env
